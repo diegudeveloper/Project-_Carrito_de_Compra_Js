@@ -8,9 +8,21 @@ const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 
 listaCursos.addEventListener('click', (e) => {
     e.preventDefault();
+
     if (e.target.classList.contains('agregar-carrito')) {
-    console.log(e.target);
+    const curoSeleccionado = e.target.parentElement.parentElement;
+
+    leerDatosCurso(curoSeleccionado);
+
     }
 });
 
-//leer los datos delcurso
+//leer los datos del curso
+
+function leerDatosCurso(curso) {
+    console.log(curso);
+
+    //crear u objeto
+
+    
+}
