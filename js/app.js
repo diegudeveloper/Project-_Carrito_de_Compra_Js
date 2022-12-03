@@ -1,36 +1,35 @@
 const carrito = document.querySelector('#carrito');
-const listaCursos = document.querySelector('#lista-cursos'); //donde se vaciara el carrito
+const contenedorrCarrito = document.querySelector('#lista-cursos tbody'); //donde se vaciara el carrito
+const listaCurso = document.querySelector('#lista-cursos');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 
 
-//identificar boton
-
-
-listaCursos.addEventListener('click', (e) => {
+//Evento AddEventListener al boton Agregar al carrito
+listaCurso.addEventListener('click', (e) => {
     e.preventDefault();
 
-    if (e.target.classList.contains('agregar-carrito')) {
-    const curoSeleccionado = e.target.parentElement.parentElement;
-
-    leerDatosCurso(curoSeleccionado);
-
+    //Identifico la informacion del curso al cual estoy eligiendo
+    if(e.target.classList.contains('agregar-carrito')) {
+        const datosCurso = e.target.parentElement.parentElement;
+        // console.log(datosCurso);
+        leerDatos(datosCurso)
     }
 });
 
-//leer los datos del curso
 
-function leerDatosCurso(curso) {
-    console.log(curso);
+function leerDatos(datosCurso) {
+    console.log(datosCurso);
 
-    //crear u objeto
+    //Creo un objeto con los datos del curso
 
-    const infoCurso = {
-        imagen: curso.querySelector('img').src,
-        titulo: curso.querySelector('h4').textContent,
-        precio: curso.querySelector('.precio span').textContent,
-        id: curso.querySelector('a').getAttribute('data-id'),
+    const cursoSeleccionado = {
+        imagen: datosCurso.querySelector('img').src,
+        nombre: datosCurso.querySelector('h4').textContent,
+        precio: datosCurso.querySelector('span').textContent,
+        id: datosCurso.querySelector('a').getAttribute('data-id'),
         cantidad: 1,
     }
 
-    console.log(infoCurso);
+    console.log(cursoSeleccionado);
 }
+
