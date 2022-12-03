@@ -1,5 +1,5 @@
 const carrito = document.querySelector('#carrito');
-const contenedorrCarrito = document.querySelector('#lista-cursos tbody'); //donde se vaciara el carrito
+const contenedorCarrito = document.querySelector('#lista-carrito tbody'); //donde se vaciara el carrito
 const listaCurso = document.querySelector('#lista-cursos');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 let carritoCompra = [];
@@ -28,11 +28,35 @@ function leerDatos(datosCurso) {
         nombre: datosCurso.querySelector('h4').textContent,
         precio: datosCurso.querySelector('span').textContent,
         id: datosCurso.querySelector('a').getAttribute('data-id'),
-        cantidad: 1,
+        cantidad: 1
     }
 
     carritoCompra = [...carritoCompra, cursoSeleccionado];
     console.log(carritoCompra);
+
+    creacionElementoHtml();
+}
+
+function creacionElementoHtml() {
+
+    carritoCompra.forEach(curso => {
+        const tablet = document.createElement('tr');
+        tablet.innerHTML = `
+            <td>
+                ${curso.imagen};
+            </td>
+            <td>
+                ${curso.nombre};
+            </td>
+            <td>
+                ${curso.precio};
+            </td>
+        `;
+        
+        contenedorCarrito.appendChild(tablet);
+    });
+
+    
 }
 
 
