@@ -2,6 +2,7 @@ const carrito = document.querySelector('#carrito');
 const contenedorrCarrito = document.querySelector('#lista-cursos tbody'); //donde se vaciara el carrito
 const listaCurso = document.querySelector('#lista-cursos');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
+let carritoCompra = [];
 
 
 //Evento AddEventListener al boton Agregar al carrito
@@ -18,7 +19,7 @@ listaCurso.addEventListener('click', (e) => {
 
 
 function leerDatos(datosCurso) {
-    console.log(datosCurso);
+    // console.log(datosCurso);
 
     //Creo un objeto con los datos del curso
 
@@ -30,6 +31,8 @@ function leerDatos(datosCurso) {
         cantidad: 1,
     }
 
-    console.log(cursoSeleccionado);
+    carritoCompra = [...carritoCompra, cursoSeleccionado];
+    console.log(carritoCompra);
 }
+
 
