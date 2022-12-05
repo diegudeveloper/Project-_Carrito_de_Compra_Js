@@ -2,61 +2,77 @@ const carrito = document.querySelector('#carrito');
 const contenedorCarrito = document.querySelector('#lista-carrito tbody'); //donde se vaciara el carrito
 const listaCurso = document.querySelector('#lista-cursos');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
-let carritoCompra = [];
+let carritoArray = [];
 
-
-//Evento AddEventListener al boton Agregar al carrito
+//Creacion del evento click
 listaCurso.addEventListener('click', (e) => {
     e.preventDefault();
 
-    //Identifico la informacion del curso al cual estoy eligiendo
     if(e.target.classList.contains('agregar-carrito')) {
-        const datosCurso = e.target.parentElement.parentElement;
-        // console.log(datosCurso);
-        leerDatos(datosCurso)
+        //Se realiza traversing a fin de llegar al container del curso para poder leer los datos 
+        const agregaCurso = e.target.parentElement.parentElement;
+        // console.log(agregaCurso);
+        leerDatos(agregaCurso);
+    };
+    
+})
+
+//leer los datos del curso
+
+function leerDatos(agregaCurso) {
+    console.log(agregaCurso);
+
+    //construyo un objeto con los datos leidos al precionar el boton agregar carrito
+
+    const cursoSleccionado = {
+        imagen: agregaCurso.querySelector('img').src,
+        nombre: agregaCurso.querySelector('h4').textContent,
+        precio: agregaCurso.querySelector('span').textContent,
+        id: agregaCurso.querySelector('a').getAttribute('data-id'),
+        cantidad: 1,
     }
-});
+    // console.log(cursoSleccionado);
 
+    //Se crea y se agrega en el array el curso seleccionado. 
+    carritoArray = [...carritoArray, cursoSleccionado];
 
-function leerDatos(datosCurso) {
-    // console.log(datosCurso);
-
-    //Creo un objeto con los datos del curso
-
-    const cursoSeleccionado = {
-        imagen: datosCurso.querySelector('img').src,
-        nombre: datosCurso.querySelector('h4').textContent,
-        precio: datosCurso.querySelector('span').textContent,
-        id: datosCurso.querySelector('a').getAttribute('data-id'),
-        cantidad: 1
-    }
-
-    carritoCompra = [...carritoCompra, cursoSeleccionado];
-    console.log(carritoCompra);
-
-    creacionElementoHtml();
+    console.log(carritoArray);
+    elementoHtml();
 }
 
-function creacionElementoHtml() {
+//Crear el elemento a donde vamos a agregar el curso
 
-    carritoCompra.forEach(curso => {
+function elementoHtml() {
+
+    //Se llama a laa funcion limpiar thml para obviamente limpiar el duplicado de los cursos
+    limpiarHtml();
+
+    //Se itera por cada curso seleccionado y se crea el elemento donde se agregara
+    carritoArray.forEach(curso => {
         const tablet = document.createElement('tr');
         tablet.innerHTML = `
             <td>
-                ${curso.imagen};
+                <img src="${curso.imagen}" width="150">
             </td>
             <td>
-                ${curso.nombre};
+                ${curso.nombre}
             </td>
             <td>
-                ${curso.precio};
+                ${curso.precio}
             </td>
-        `;
-        
+            <td>
+                ${curso.cantidad}
+            </td>
+        `
         contenedorCarrito.appendChild(tablet);
-    });
+    })
 
-    
+    //Se agrega en el contenedor el elemento creado y el curso seleccionado
+    console.log('contenedorCarrito');
 }
 
+//Se crea la funcion para limpiar el contenedor porque se duplicaban los cursos.
+function limpiarHtml() {
+    contenedorCarrito.innerHTML = "";
+}
 
