@@ -33,8 +33,22 @@ function leerDatos(agregaCurso) {
     }
     // console.log(cursoSleccionado);
 
+    //Se revisa si el elemento existe
+    const existe = carritoArray.some((agregaCurso) => agregaCurso.id === cursoSleccionado.id)
+    if(existe) {
+        carritoArray.forEach(agregaCurso => {
+            if (agregaCurso.id === cursoSleccionado.id) {
+                agregaCurso.cantidad++;
+                return agregaCurso
+            }
+        })
+    }else {
+        carritoArray = [...carritoArray, cursoSleccionado]; 
+    }
+    // console.log(existe);
+
     //Se crea y se agrega en el array el curso seleccionado. 
-    carritoArray = [...carritoArray, cursoSleccionado];
+    // carritoArray = [...carritoArray, cursoSleccionado];
 
     console.log(carritoArray);
     elementoHtml();
