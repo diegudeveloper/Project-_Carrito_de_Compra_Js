@@ -32,6 +32,13 @@ function eliminarCurso (e) {
     }
 }
 
+vaciarCarritoBtn.addEventListener('click', () => {
+    carritoArray = [];
+    
+    limpiarHtml();
+
+})
+
 //leer los datos del curso
 
 function leerDatos(agregaCurso) {
