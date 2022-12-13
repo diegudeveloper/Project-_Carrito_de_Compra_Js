@@ -32,7 +32,7 @@ Este proyecto fue realizado con Html para su estructurá, css para su estilo y j
 
 </details>
 
-# Project Travel Agency
+# Shopping Cart Project
 
 <details>
     <summary>🗣️ English Version</summary>
