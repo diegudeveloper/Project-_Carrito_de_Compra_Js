@@ -17,6 +17,21 @@ listaCurso.addEventListener('click', (e) => {
     
 })
 
+carrito.addEventListener("click", eliminarCurso);
+
+function eliminarCurso (e) {
+    // console.log(e.target.classList.contains("borrar-curso"));
+    if (e.target.classList.contains("borrar-curso")) {
+        // console.log(e.target.getAttribute("data-id"));
+        const elimina = e.target.getAttribute("data-id");
+
+        carritoArray = carritoArray.filter(agregaCurso => agregaCurso.id !== elimina)
+
+        elementoHtml();   
+    
+    }
+}
+
 //leer los datos del curso
 
 function leerDatos(agregaCurso) {
@@ -77,7 +92,10 @@ function elementoHtml() {
             <td>
                 ${curso.cantidad}
             </td>
-        `
+            <td>
+                <a href"#" class="borrar-curso" data-id="${curso.id}"> X </a>
+            </td>
+        `;
         contenedorCarrito.appendChild(tablet);
     })
 
