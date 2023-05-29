@@ -25,7 +25,22 @@ function eliminarCurso (e) {
         // console.log(e.target.getAttribute("data-id"));
         const elimina = e.target.getAttribute("data-id");
 
-        carritoArray = carritoArray.filter(agregaCurso => agregaCurso.id !== elimina)
+        // carritoArray = carritoArray.filter(agregaCurso => agregaCurso.id !== elimina)
+
+        carritoArray = carritoArray.filter(curso => {
+            if(curso.id === elimina) {
+                curso.cantidad--;
+                if (curso.cantidad < 1) {
+                    delete curso;
+                }else {
+                    return curso;
+                }
+            }
+            else {
+                return curso;
+            }
+               
+        })
 
         elementoHtml();   
     
