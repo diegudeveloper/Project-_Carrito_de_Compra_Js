@@ -4,6 +4,11 @@ const listaCurso = document.querySelector('#lista-cursos');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 let carritoArray = [];
 
+document.addEventListener("DOMContentLoaded", () => {
+    carritoArray = JSON.parse(localStorage.getItem("carrito")) ?? [];
+    elementoHtml();
+})
+
 //Creacion del evento click
 listaCurso.addEventListener('click', (e) => {
     e.preventDefault();
@@ -14,7 +19,6 @@ listaCurso.addEventListener('click', (e) => {
         // console.log(agregaCurso);
         leerDatos(agregaCurso);
     };
-    
 })
 
 carrito.addEventListener("click", eliminarCurso);
@@ -108,8 +112,14 @@ function elementoHtml() {
         `;
         contenedorCarrito.appendChild(tablet);
     })
+
+    sincronizarStorage();
     //Se agrega en el contenedor el elemento creado y el curso seleccionado
-    console.log('contenedorCarrito');
+    // console.log('contenedorCarrito');
+}
+
+function sincronizarStorage() {
+    localStorage.setItem('carrito', JSON.stringify(carritoArray));
 }
 
 //Se crea la funcion para limpiar el contenedor porque se duplicaban los cursos.
