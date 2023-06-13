@@ -39,28 +39,21 @@ function eliminarCurso (e) {
             else {
                 return curso;
             }
-               
         })
-
         elementoHtml();   
-    
     }
 }
 
 vaciarCarritoBtn.addEventListener('click', () => {
     carritoArray = [];
-    
     limpiarHtml();
-
 })
 
 //leer los datos del curso
 
 function leerDatos(agregaCurso) {
     console.log(agregaCurso);
-
     //construyo un objeto con los datos leidos al precionar el boton agregar carrito
-
     const cursoSleccionado = {
         imagen: agregaCurso.querySelector('img').src,
         nombre: agregaCurso.querySelector('h4').textContent,
@@ -69,7 +62,6 @@ function leerDatos(agregaCurso) {
         cantidad: 1,
     }
     // console.log(cursoSleccionado);
-
     //Se revisa si el elemento existe
     const existe = carritoArray.some((agregaCurso) => agregaCurso.id === cursoSleccionado.id)
     if(existe) {
@@ -83,10 +75,8 @@ function leerDatos(agregaCurso) {
         carritoArray = [...carritoArray, cursoSleccionado]; 
     }
     // console.log(existe);
-
     //Se crea y se agrega en el array el curso seleccionado. 
     // carritoArray = [...carritoArray, cursoSleccionado];
-
     console.log(carritoArray);
     elementoHtml();
 }
@@ -94,10 +84,8 @@ function leerDatos(agregaCurso) {
 //Crear el elemento a donde vamos a agregar el curso
 
 function elementoHtml() {
-
     //Se llama a laa funcion limpiar thml para obviamente limpiar el duplicado de los cursos
     limpiarHtml();
-
     //Se itera por cada curso seleccionado y se crea el elemento donde se agregara
     carritoArray.forEach(curso => {
         const tablet = document.createElement('tr');
@@ -120,7 +108,6 @@ function elementoHtml() {
         `;
         contenedorCarrito.appendChild(tablet);
     })
-
     //Se agrega en el contenedor el elemento creado y el curso seleccionado
     console.log('contenedorCarrito');
 }
@@ -129,4 +116,3 @@ function elementoHtml() {
 function limpiarHtml() {
     contenedorCarrito.innerHTML = "";
 }
-
